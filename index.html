@@ -58,34 +58,28 @@
       for (i = 0; i < 3; i++) {
 	  x = 200;
 	  for (j = 0; j < 3; j++) {
-	      myimage = this.add.image(x,y,words[k]);
+	      myimage = this.add.sprite(x,y,words[k]);
 	      myimage.setScale(0.1);
 	      myimage.setInteractive();
-	      myimage.on('clicked', clickHandler, this);
+	      myimage.on('pointerdown',clickHandler);
+	     
 	      k += 1;
 	      x += 200
 	  }
 	  y += 150
       }
-       this.input.on('gameobjectup', function (pointer, gameObject)
-    {
-        gameObject.emit('clicked', gameObject);
-    }, this);
+  
   }
 
     function update ()
   {
   }
 
-  function clickHandler (box)
-  {
-      box.off('clicked', clickHandler);
-      window.alert(k);
-      if(right[k]==2) {
-	  box.input.enabled = false;
-	  box.setVisible(false);
-      }
-}
+  function clickHandler () {
+       this.input.enabled = false;
+       this.setVisible(false);
+  }
+
 
 </script>
 
